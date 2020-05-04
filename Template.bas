@@ -69,7 +69,7 @@ Sub Template()
 'Generate Sheets
     Dim rng As Range, cell As Range, x As Integer
     Set rng = Range("'Layout'!D3:D1000")
-    x = 3
+    x = 2
     For Each cell In rng
         If cell.Value <> "" Then
             Dim ws As Worksheet
@@ -90,9 +90,25 @@ Sub Template()
     Next cell
     
 'Fill formulas
-    x = x - 1
     Set SourceRange = Worksheets("Layout").Range("E3:H3")
     Set fillRange = Worksheets("Layout").Range("E3:H" & x)
     SourceRange.AutoFill Destination:=fillRange
+    
+'Formatting
+    Sheets("Layout").Activate
+    ActiveSheet.Range("F3:F" & x).Select
+    Selection.FormatConditions.Add Type:=xlCellValue, Operator:=xlNotEqual, _
+        Formula1:="=NUMBERVALUE($E$1)-$E3"
+    Selection.FormatConditions(Selection.FormatConditions.Count).SetFirstPriority
+    With Selection.FormatConditions(1).Font
+        .Color = -16777063
+        .TintAndShade = 0
+    End With
+    With Selection.FormatConditions(1).Interior
+        .PatternColorIndex = xlAutomatic
+        .Color = 13421823
+        .TintAndShade = 0
+    End With
+    Selection.FormatConditions(1).StopIfTrue = False
 End Sub
 

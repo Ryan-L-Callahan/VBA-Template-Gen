@@ -1,7 +1,7 @@
 # VBA-Template-Gen
 Assumes Column D, Row 2-1000 holds consecutive Standard Field Names.
 Typically, Column A will hold consecutive field names, Column B and C will hold consecutive start position and length. 
-Run the Template Macro, then the Hyperlink Macro.
+Run the Template Macro.
 Paste the results of the following query to the Batch Metadata tab, where <table> is changed to your table:
   SELECT btch_id, cyc_dt, file_nm, COUNT(1) as record_count
   FROM <table>

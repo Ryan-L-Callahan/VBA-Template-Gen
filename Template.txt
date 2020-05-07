@@ -1,5 +1,5 @@
 
-Sub Template()
+Sub Full_Template()
 
 'Generate formatting
     Range("E2").Select
@@ -108,4 +108,15 @@ Sub Template()
         .TintAndShade = 0
     End With
     Selection.FormatConditions(1).StopIfTrue = False
+    
+'Hyperlinks
+    Dim span As Range, val As Range
+    Set span = Range("'Layout'!D3:D1000")
+    For Each val In span
+        If val.Value <> "" Then
+            val.Select
+            Worksheets("Layout").hyperlinks.Add Anchor:=Selection, Address:="", SubAddress:= _
+            val.Value
+        End If
+    Next val
 End Sub

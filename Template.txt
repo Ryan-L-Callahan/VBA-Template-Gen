@@ -81,7 +81,7 @@ Sub Full_Template()
                 ws.Range("D1").Select
                 ActiveCell.Formula = "Back"
                 ws.hyperlinks.Add Anchor:=Selection, Address:="", SubAddress:= _
-                cell.Value
+                "Layout!" & cell.Address
                 x = x + 1
             End With
         End If
